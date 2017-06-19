@@ -2,11 +2,11 @@
 A new fast method for building multiple consensus trees using k-medoids
 
 
-===> ========================================================================================================
+===> ===========================================================================================
 ===> Program : K-Means super-trees - 2015
 ===> Authors   : Nadia Tahiri and Vladimir Makarenkov (Universite du Quebec a Montreal)
 ===> This program computes a clustering for phylogenetic trees based on the K-Means partitioning.
-===> ========================================================================================================
+===> ============================================================================================
  
 Please execute next command line:
 ===> For simulation: ./cSuperTree -simulation number_species percent_nose number_of_simulation int_parameter
