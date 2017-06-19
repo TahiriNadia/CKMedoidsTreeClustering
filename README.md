@@ -1,19 +1,19 @@
 # Clustering_Phylogenetic_trees
 A new fast method for building multiple consensus trees using k-medoids
 
-# Installation
-	$ make 
-	$ make install
-	$ make clean
-	$make help
-	
 # About
 	=> =====================================================================================
 	=> Program : K-Medoids super-trees - 2015
 	=> Authors   : Nadia Tahiri and Vladimir Makarenkov (Universite du Quebec a Montreal)
 	=> This program computes a clustering for phylogenetic trees based on the k-Medoids.
 	=> =====================================================================================
- 
+
+# Installation
+	$ make 
+	$ make install
+	$ make clean
+	$ make help
+
 # Examples
 	Please execute next command line:
 	=> For simulation: ./cSuperTree -simulation number_species percent_nose number_of_simulation int_parameter
