@@ -28,7 +28,7 @@ A new fast method for building multiple consensus trees using k-medoids
 
 	where RF is Robinson and Foulds distance
 	
-	./cSuperTree -tree data_47.txt 1
+	./cSuperTree -tree data/data_47.txt 1
 	
 # Input
 	Phylogenetic trees file in Netwick format (see example data/data_47.txt)
