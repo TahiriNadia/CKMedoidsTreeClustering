@@ -4,8 +4,7 @@ A new fast method for building multiple consensus trees using k-medoids
 # About
 	=> =====================================================================================
 	=> Program : K-Medoids super-trees - 2015
-	=> Authors   : Nadia Tahiri and Vladimir Makarenkov
-	(Universite du Quebec a Montreal)
+	=> Authors   : Nadia Tahiri and Vladimir Makarenkov (Universite du Quebec a Montreal)
 	=> This program computes a clustering for phylogenetic trees based on the k-Medoids.
 	=> =====================================================================================
  
@@ -16,10 +15,12 @@ A new fast method for building multiple consensus trees using k-medoids
 	=> For matrice: ./cSuperTree -matrice nameFile_matrice int_parameter
 
 	List of criterion with K-medoid algorithm
-	option 1 - Calinski-Harabasz with RF
-	option 2 - Calinski-Harabasz with RF squared
-	option 3 - Silhouette with RF
-	option 4 - Silhouette with RF squared
-
+	=> option 1 - Calinski-Harabasz with RF
+	=> option 2 - Calinski-Harabasz with RF squared
+	=> option 3 - Silhouette with RF
+	=> option 4 - Silhouette with RF squared
 
 	where RF is Robinson and Foulds distance
+	
+	./cSuperTree -tree data_47.txt 1
+	
