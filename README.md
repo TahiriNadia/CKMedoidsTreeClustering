@@ -1,6 +1,12 @@
 # Clustering_Phylogenetic_trees
 A new fast method for building multiple consensus trees using k-medoids
 
+# Installation
+	$ make 
+	$ make install
+	$ make clean
+	$make help
+	
 # About
 	=> =====================================================================================
 	=> Program : K-Medoids super-trees - 2015
