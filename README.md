@@ -30,3 +30,9 @@ A new fast method for building multiple consensus trees using k-medoids
 	
 	./cSuperTree -tree data_47.txt 1
 	
+# Input
+	Phylogenetic trees file in Netwick format (see example data/data_47.txt)
+	
+# Output
+	stat.csv : statitic values (score of CH or SH), partitionning data and K found
+	output.txt : each phylogenetic tree was attribued of their cluster 
