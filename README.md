@@ -8,7 +8,7 @@ A new fast method for building multiple consensus trees using k-medoids
 	=> This program computes a clustering of phylogenetic trees based on the K-Medoids partitioning algorithm.
 	=> The set of trees in the Newick format should be provided as input.
 	=> The optimal partitioning in K classes is returned as output. The number of classes can be determined by the 
-	=> Silhouette and CalinskiâHarabasz cluster validity indices adapted for tree clustering. The non-squared and 
+	=> Silhouette and Calinski-Harabasz cluster validity indices adapted for tree clustering. The non-squared and 
 	=> squared Robinson and Foulds topological distance can be used. 
 	=> The recommended option: Silhouette + non-squared Robinson and Foulds distance.
 	=> =============================================================================================================
