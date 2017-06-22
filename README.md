@@ -26,7 +26,7 @@ A new fast method for building multiple consensus trees using k-medoids
 
 	where RF is Robinson and Foulds distance
 	
-	./cSuperTree -tree data/tree.tre 3
+	./cSuperTree -tree ../data/tree.tre 3
 	
 # Input
 	=> See the folder data
