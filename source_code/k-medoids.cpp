@@ -28,7 +28,6 @@
 #include <sstream>
 #include <limits>
 
-
 FILE *Output4;
 
 //--Read the data
