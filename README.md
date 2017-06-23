@@ -33,11 +33,11 @@ A new fast method for building multiple consensus trees using k-medoids
 	=> criterion 4 - Silhouette with RF-squared
 	
 	Command line execution:
-	./KMTC -tree ../data/trees/input.tre 3
+	./KMTC -tree ../input/input.tre 3
 	
 # Input
 	=> See the folder "data"
-	Phylogenetic trees in the Netwick format (see the example in: data/trees/input.tre)
+	Phylogenetic trees in the Netwick format (see the example in: input/input.tre)
 	
 # Output
 	=> See the folder "output"
