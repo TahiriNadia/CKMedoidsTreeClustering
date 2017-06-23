@@ -1,4 +1,4 @@
-# Clustering_Phylogenetic_trees
+# CKMedoidsTreeClustering
 A new fast method for building multiple consensus trees using k-medoids
 
 # About
@@ -21,23 +21,26 @@ A new fast method for building multiple consensus trees using k-medoids
 
 # Examples
 	Please execute the following command line:
-	=> For trees: ./KMTC -tree Input_file int_parameter
-
-	List of criteria with K-medoid algorithm
-	=> option 1 - Calinski-Harabasz with RF
-	=> option 2 - Calinski-Harabasz with RF squared
-	=> option 3 - Silhouette with RF
-	=> option 4 - Silhouette with RF squared
-
-	where RF is Robinson and Foulds distance
+	=> For trees: ./KMTC -tree input_file criterion
 	
+	Input_file - the input file for the program 
+	criterion - the criterion for the k-medoids algorithm (1, 2, 3 or 4, see below)
+
+	List of criteria for the k-medoids algorithm:
+	=> criterion 1 - Calinski-Harabasz with RF (Robinson and Foulds distance)
+	=> criterion 2 - Calinski-Harabasz with RF-squared
+	=> criterion 3 - Silhouette with RF
+	=> criterion 4 - Silhouette with RF-squared
+	
+	Command line execution:
 	./KMTC -tree ../data/trees/input.tre 3
 	
 # Input
-	=> See the folder data
-	Phylogenetic trees file in Netwick format (see example data/input.tre)
+	=> See the folder "data"
+	Phylogenetic trees in the Netwick format (see the example in: data/trees/input.tre)
 	
 # Output
-	=> See the folder Output
-	1) stat.csv : statitic values (score of CH or SH), partitionning data and K found
-	2) output.txt : each phylogenetic tree was attribued of their cluster 
+	=> See the folder "output"
+	The output is in the following files:
+	1) stat.csv - for clustering statistics;
+	2) output.txt - for cluster content.
