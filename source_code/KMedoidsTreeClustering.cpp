@@ -2,7 +2,6 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include <boost/regex.hpp>
 
 #include <signal.h>
 #include <stdio.h>
