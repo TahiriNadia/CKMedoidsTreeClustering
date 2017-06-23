@@ -718,7 +718,7 @@ m60:
 
 	// Compute execution time
     texec2=difftime(tend2,tbegin2);	// tend-tbegin (result in second)
-	fprintf (Output4,"%.3f;\n",texec2);
+	fprintf (Output4,"%.3f\n",texec2);
 		
 	// Print results
 	
