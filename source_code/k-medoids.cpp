@@ -776,7 +776,6 @@ m60:
 	delete [] nameb;
 	delete [] nk;
 	delete [] distances_RF_norm;
-	delete [] N_especes;
 		
 	return 0;
 }
