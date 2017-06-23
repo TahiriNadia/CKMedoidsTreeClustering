@@ -5,7 +5,7 @@ A new fast method for building multiple consensus trees using k-medoids
 	=> =============================================================================================================
 	=> Program   : KMedoidsTreeClustering - 2017
 	=> Authors   : Nadia Tahiri and Vladimir Makarenkov (Universite du Quebec a Montreal)
-	=> This program computes a clustering of phylogenetic trees based on the K-Medoids partitioning algorithm.
+	=> This program computes a clustering of phylogenetic trees based on the k-Medoids partitioning algorithm.
 	=> The set of trees in the Newick format should be provided as input.
 	=> The optimal partitioning in K classes is returned as output. The number of classes can be determined by the 
 	=> Silhouette and Calinski-Harabasz cluster validity indices adapted for tree clustering. The non-squared and 
