@@ -38,10 +38,9 @@ clean:
 	$(RM) KMTC
 	
 help: 
-	g++ KMedoidsTreeClustering.cpp -openmp -g -o KMTC
-	chmod -R 777 * .
-	@echo "Please execute the following command line:"
-	@echo '===> For trees: ./KMTC -tree Input_file int_parameter'
+	@echo 'Please execute the following command lines (on two steps):'
+	@echo '===> 1) make install'
+	@echo '===> 2) For trees: ./KMTC -tree Input_file int_parameter'
 	@echo ' '
 	@echo '===> ================================================================================================================================================='
 	@echo '===> Program   : KMedoidsTreeClustering - 2017'
