@@ -141,15 +141,17 @@ struct TreeHGT
 const char *SpeciesBranch = "**Rooted species tree inferred with NJ (with branch lengths fitted to the gene distance)**\n";
 const char *SpeciesBranchNewick = "**Rooted species tree (with branch lengths fitted to the gene distance)**\n";
 const char *GeneBranch = "**Rooted gene tree inferred with NJ**\n";
-const char *description = "=======================================================================================================\n"
-						  "| Program : HGT Detection 3.3 --------------------- February, 2011\n"
-                          "| Authors   : Alix Boc, Alpha Boubacar Diallo and Vladimir Makarenkov (Universite du Quebec a Montreal)\n"
-						  "| This program computes a unique scenario of horizontal gene transfers (HGT) for\n" 
-                          "| the given pair of species and gene phylogenetic trees.\n"
-						  "=======================================================================================================\n";
+const char *description = "===============================================================================================================================================\n"
+			  "| KMTC - Clustering phylogenetic trees using k-medoids\n"
+                          "| Authors   : Nadia Tahiri and Vladimir Makarenkov - Departement d'informatique - Universite du Quebec a Montreal\n"
+			  "| This program computes a clustering of phylogenetic trees based on the k-medoids partitioning algorithm.\n" 
+                          "| The set of trees in the Newick format should be provided as input.\n"
+                          "| The optimal partitioning in K classes is returned as output. The number of classes can be determined by the\n"	
+			  "| Silhouette and Calinski–Harabasz cluster validity indices adapted for tree clustering. The non-squared and\n"
+			  "|  squared Robinson and Foulds topological distance can be used. The recommended option: Silhouette + non-squared Robinson and Foulds distance.\n"
+		           "===============================================================================================================================================\n";
 
-const char *startMessage = "HGT-DETECTION V.3.2\n"
-						   "by Alix Boc and Vladimir Makarenkov\n"; 
+const char *startMessage = "KMTC - Clustering phylogenetic trees using k-medoids\n"
 						  
 const char *fichier_output = "output.txt";
 const char *fichier_hgt    = "result.txt";
