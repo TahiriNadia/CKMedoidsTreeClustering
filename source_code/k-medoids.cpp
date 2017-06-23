@@ -53,14 +53,14 @@ void listePartition(int Strouve [],map<int,string>  mapIndicesTreesFinal,vector 
 int fact (int valeur);
 double f_RI(int Strouve[],int Sref[],int N);
 double f_ARI(int Strouve[],int Sref[],const char *K_real,int group,int N);
-void outStat(int Strouve[],int Sref[],char *criteria,int N,char *N_especes,char *percent,const char *K_real,int group,double score,int **listr,vector <string> monTableau);
+void outStat(int Strouve[],int Sref[],char *criteria,int N,int N_especes,char *percent,const char *K_real,int group,double score,int **listr,vector <string> monTableau);
 void convert_list(int *&list, int n, vector<string> &centroid_k,vector<int> &centroid_k_pos, int &kk);
 void RF_tree2tree(double &D1,string tree_i_k,string centro_k);
 double NouvelleCallRF(double nb_esp_identique);
 void delete_space(string &str);
 
 //fonctions en passant par le pseudo-centroid
-//BORNE SUPERIEUR (similaire a K-medoid)
+//BORNE SUPERIEUR (similaire a k-medoids)
 void Centroids_approx(int &n,double** mat,double** xbar,int* list,int &kk,vector<int> &centroid_k_pos);
 double FO_approx_Kmedoid(int &n,int &kmax,double** mat,double* Dvec,int* list,int* howmany,double &SSE,int &kk,vector<int> &centroid_k_pos);
 double DistanceCH_approx_Kmedoid(int &n,int &kk,double** mat,vector<int> &centroid_k_pos,double FO_new,int indice_arbre_cons);
@@ -689,26 +689,26 @@ m60:
 	switch (intParam){
 		case 1:
 		{		
-			strcpy(criteria, "k-medoids: Calinski-Harabasz and Robinson & Foulds distance");
-			outStat(Strouve,Sref,criteria,N,N_especes,percent,K_real,CHr_group,CHr_max,listr,monTableau);
+			strcpy(criteria, "k-medoids: Calinski-Harabasz and Robinson-Foulds distance");
+			outStat(Strouve,Sref,criteria,N,n_identique[1][2],percent,K_real,CHr_group,CHr_max,listr,monTableau);
 		}break;
 
 		case 2:
 		{		
-			strcpy(criteria, "k-medoids: Calinski-Harabasz and Robinson & Foulds distance squared");
-			outStat(Strouve,Sref,criteria,N,N_especes,percent,K_real,CHr_group,CHr_max,listr,monTableau);
+			strcpy(criteria, "k-medoids: Calinski-Harabasz and Robinson-Foulds distance squared");
+			outStat(Strouve,Sref,criteria,N,n_identique[1][2],percent,K_real,CHr_group,CHr_max,listr,monTableau);
 		}break;
 		
 		case 3:
 		{		
-			strcpy(criteria, "k-medoids: Silhouette and Robinson & Foulds distance");
-			outStat(Strouve,Sref,criteria,N,N_especes,percent,K_real,Silr_group,Silr_max,listr,monTableau);
+			strcpy(criteria, "k-medoids: Silhouette and Robinson-Foulds distance");
+			outStat(Strouve,Sref,criteria,N,n_identique[1][2],percent,K_real,Silr_group,Silr_max,listr,monTableau);
 		}break;
 		
 		case 4:
 		{		
-			strcpy(criteria, "k-medoids: Silhouette and Robinson & Foulds distance squared");
-			outStat(Strouve,Sref,criteria,N,N_especes,percent,K_real,Silr_group,Silr_max,listr,monTableau);
+			strcpy(criteria, "k-medoids: Silhouette and Robinson-Foulds distance squared");
+			outStat(Strouve,Sref,criteria,N,n_identique[1][2],percent,K_real,Silr_group,Silr_max,listr,monTableau);
 		}break;
 		
 	}
@@ -776,6 +776,7 @@ m60:
 	delete [] nameb;
 	delete [] nk;
 	delete [] distances_RF_norm;
+	delete [] N_especes;
 		
 	return 0;
 }
@@ -795,7 +796,7 @@ m60:
 // Modification Centroids: this whole subroutine
 
 //stat output
-void outStat(int Strouve[],int Sref[],char *criteria,int N,char *N_especes,char *percent,const char *K_real,int group/* ,double RI,double ARI */,double score,int **listr,vector <string> monTableau)
+void outStat(int Strouve[],int Sref[],char *criteria,int N,int N_especes,char *percent,const char *K_real,int group/* ,double RI,double ARI */,double score,int **listr,vector <string> monTableau)
 {
 
 	//Output results
@@ -807,12 +808,12 @@ void outStat(int Strouve[],int Sref[],char *criteria,int N,char *N_especes,char 
 	//Compute Rand index Adjusted between Strouve and Sref
 	double ARI = f_ARI(Strouve,Sref,K_real,group,N);
 		
-	fprintf (Output4,"%s;",criteria);
-	fprintf (Output4,"%i;",N);
-	fprintf (Output4,"%s;",N_especes);
-	fprintf (Output4,"%s;",percent);
-	fprintf (Output4,"%s;",K_real);
-	fprintf (Output4,"%d;",group);
+	fprintf (Output4,"%s,",criteria);
+	fprintf (Output4,"%i,",N);
+	fprintf (Output4,"%d,",N_especes);
+	fprintf (Output4,"%s,",percent);
+	fprintf (Output4,"%s,",K_real);
+	fprintf (Output4,"%d,",group);
 	int diff = atoi(K_real)-group;
 	diff = fabs(diff);
 	const int const_K_real = atoi(K_real);
@@ -820,28 +821,28 @@ void outStat(int Strouve[],int Sref[],char *criteria,int N,char *N_especes,char 
 	
 	double max_k = max(const_K_real,const_group);
 	double diff_norm = (diff*1.0)/(max_k*1.0);
-	fprintf (Output4,"%i;",diff);
-	fprintf (Output4,"%.3f;",diff_norm);
+	fprintf (Output4,"%i,",diff);
+	fprintf (Output4,"%.3f,",diff_norm);
 	if(atoi(K_real) == group){
-		fprintf (Output4,"%i;",1);
+		fprintf (Output4,"%i,",1);
 	}else{
-		fprintf (Output4,"%i;",0);
+		fprintf (Output4,"%i,",0);
 	}
-	fprintf (Output4,"%.3f;",RI);
-	fprintf (Output4,"%.3f;",ARI);	
-	fprintf (Output4,"%.3f;",score);
+	fprintf (Output4,"%.3f,",RI);
+	fprintf (Output4,"%.3f,",ARI);	
+	fprintf (Output4,"%.3f,",score);
 	
 	fprintf (Output4,"part[");
 	for (int p=1; p<=N; p++){
 		if(p==N){
 			//fprintf (Output4,"%i%s",listr[group][p]," ");
-			fprintf (Output4,"%s%i%s%i%s","(T",p,",",Strouve[p-1],") ");
+			fprintf (Output4,"%s%i%s%i%s","(T",p,"-",Strouve[p-1],") ");
 		}else{
 			//fprintf (Output4,"%i%s",listr[group][p]," <> ");
-			fprintf (Output4,"%s%i%s%i%s","(T",p,",",Strouve[p-1],") <> ");
+			fprintf (Output4,"%s%i%s%i%s","(T",p,"-",Strouve[p-1],") <> ");
 		}
 	}
-	fprintf (Output4,"];");
+	fprintf (Output4,"],");
 	
 	//output.txt file
 	//composition oof each cluster and each element
@@ -1192,386 +1193,7 @@ void Centroids(int &n,int &nmax,int &p,int &pmax,int &kmax,double** mat,double**
 }			//  end
 //************************End of Centroids
 
-
-//fonctions pour la variante consense
-
-double DistanceCH_consense(int &n,int &kk,vector<string> &centroid_k,string centroid_C_min,double FO_new){	
-	double SSB=0.0;
-	double SSW=FO_new;
-	double distance_total = 0.0;
-	int k_cluster = kk;
-	double RF = 0.0;
-
-	//compute SSB
-	for(int k=1;k<=kk; k++){
-		if(centroid_k[k]!="" && centroid_C_min!=""){	
-			ofstream myTrees;
-			myTrees.open ("myTrees");
-			myTrees << centroid_k[k]<<"\n";
-			myTrees << centroid_C_min<<"\n";
-			myTrees.close();
-				
-			RF=NouvelleCallRF(16);
-			//RF_tree2tree(RF,centroid_k[k],centroid_C_min);
-			SSB+=RF;
-		}
-	}
-	
- 	if((fabs(SSW)>0.000001) && (k_cluster>1)){
-		distance_total=(SSB/SSW)*((n-k_cluster)/(k_cluster-1.0));
-	}
-	else if(fabs(SSW)<=0.000001 && (k_cluster>1)){
-		distance_total=10000000.0*SSB*((n-k_cluster)/(k_cluster-1.0));
-	}
-
-	return distance_total;	
-    
-}//  end ************************End of Distances DistanceCH_consense
-
-
-void Centroids_consensus(int &n,double** mat,double** xbar,int* list,int &kk, vector<string> &centroid_k, vector<string> monTableau)
-{  
-
-	int cluster_k=0;
-	char *filename = new char [100];
-	string str_Ci = "";	
-	//vider les vecteurs des infos des centroids 
-	centroid_k.clear();
-	
-	//initialisation des vecteurs des centroids
-	for(int k=0; k<=kk; k++){
-		centroid_k.push_back("");
-	}
-	
-	//Mettre tous les arbres de la meme repartition dans des mêmes fichier pour inférer leur consensus majoritaire
-	for (int i=1;i<=n;i++){
-		cluster_k=list[i];
-		
-		sprintf(filename,"%s%d","outtree",cluster_k);
-		
-		/* Ouvertute du fichier qui contiendra tous les arbres de chaque partition */
-		ofstream myfile;
-		myfile.open (filename, ios::out | ios::app);
-		myfile <<monTableau[i-1];
-		myfile << "\n";
-		myfile.close();
-	}
-
-	//Inférer leur consensus majoritaire de chaque partition	
-	for (int i=1;i<=kk;i++){
-		sprintf(filename,"%s%d","outtree",i);
-		ifstream fichierk(filename, ios::in);  // on ouvre en lecture
-
-		if(fichierk){		
-			// Ouvertute du fichier contenant les parametres du programme Consense
-			ofstream myfile;
-			myfile.open ("parametresConsense");
-			myfile << filename;
-			myfile << "\n";
-			myfile << "C\n";
-			myfile << "C\n";
-			myfile << "Y\n";
-			myfile.close();
-		 
-			//appel du logiciel consense
-			system("./consense <parametresConsense >outTmp");
-			
-			//Format consensus tree Ci for only one line
-			system("cat outtree|tr \"\n\" \" \">tmp.txt");
-			system("cp tmp.txt outtree");
-
-			//Recuperer le string du consensus des arbres du cluster i par la variable Ci
-			ifstream fileCi;
-			fileCi.open("outtree");
-			
-			getline(fileCi,str_Ci);
-			centroid_k[i]=(str_Ci);
-			fileCi.close(); 
-			system("rm outfile outTmp outtree tmp.txt parametresConsense");
-			fichierk.close();
-		}
-		
-	}
-	system("rm outtree*");
-	return;
-}			//  end
-//************************End of Centroids_consensus
-
-double FO_consense(int &n,int &kk,vector<string> &centroid_k, vector<string> monTableau,double** mat,double* Dvec,int* list,int* howmany,double &SSE,vector<int> &centroid_k_pos,char *N_especes)
-{
-	double *clusterK_same = new double [kk+1];
-	int *nk_CH = new int [kk+1];
-	double RF = 0.0;
-	double Dref=0,D1=0;		//Real*8 Dref,D1,SSE,Dvec(kk),weight(pmax)
-	int	kref=0;		//Integer list(nmax),howmany(kk),kref
-	//Integer ishort(pmax)
-	// Compute squared distances to group centroids. Assign objects to nearest one
-	SSE=0;		//SSE=0.0
-
-	int new_k = 0;
-	int old_k = 0;
-	int nb_cluster_dest = 0;   
-	int nb_cluster_source = 0;  
-	double FO_old = 0.0;
-	double FO_new = 0.0;
-	double tmp_calc = 0.0;
-	double tmp_calc_dest = 0.0;
-	double tmp_calc_source = 0.0;
-	
-	double min_dist = 1000000000;
-	int k_source = 0;
-	
-	double nb_esp_identique = atoi(N_especes);
-	char *filename = new char [100];
-	string str_Ci = "";
-	
-	double distances[4];	
-	for (int j=0; j<4; j++){
-		distances[j]=0.0;
-	}
-	
-	//initialisation des variables
-	for(int k=0;k<=kk; k++){
-		nk_CH[k]=0;
-		clusterK_same[k]=0.0;
-	}
-	
-	//Compter le nombre d'éléments par cluster
-	for(int k=1;k<=n; k++){
-		nk_CH[list[k]]++;
-	}
-	
-	//compute for each cluster initially, SSW value (intra groupe distance)
-	//compute SSW
-	
-	for (int i=1;i<=n;i++){	
-		if(centroid_k[list[i]]!=""){	
-			ofstream myTrees;
-			myTrees.open ("myTrees");
-			myTrees << centroid_k[list[i]]<<"\n";
-			myTrees << monTableau[i-1]<<"\n";
-			myTrees.close();
-				
-			RF=NouvelleCallRF(16);
-			
-			/*main_hgt(monTableau[i-1],centroid_k[list[i]],distances);
-			RF = distances[0];*/
-			
-			
-			//RF_tree2tree(RF,monTableau[i-1],centroid_k[list[i]]);
-			
-			clusterK_same[list[i]]+=RF;
-		}
-	} 
-
-	//compute SSW at the beginning (distance intra groupe)
-	for (int k=1;k<=kk;k++){
-		if(nk_CH[k]>1){
-			FO_old += clusterK_same[k];
-		}
-	}
-	
-	for (int i=1;i<=n; i++)			//do 20 i=1,n
-	{
-		k_source = list[i];
-		if(nk_CH[list[i]]>1){
-			for (int k=1;k<=kk;k++)			//do 12 k=1,kk
-			{				
-				//Calcul de la distance RF de chaque point i
-				// et assignation du point i au bon cluster
-				// Compute a RF distance to the centroid k
-				
-				//test si le point i n'appartenait pas initiallement à k 
-				//ET que le point i n'est pas le centroid de centroid_k_pos[i] ---  && i!=centroid_k_pos[k]
-				if(k_source!=k && list[i]!=k){
-					tmp_calc_source = 0.0;
-					tmp_calc_dest = 0.0;
-					nb_cluster_dest = nk_CH[k];
-					nb_cluster_source = nk_CH[list[i]];
-					
-					FO_new = FO_old - clusterK_same[k] - clusterK_same[list[i]];	
-
-					//Mettre tous les arbres de la meme repartition dans des mêmes fichier pour inférer leur consensus majoritaire
-					
-					//Cluster source (list[i])
-					
-					//Récupérer tous les arbres du cluster source (list[i]) sans l'arbre i
-					
-					for (int j=1;j<=n;j++){
-						if(list[i]==list[j] && i!=j){
-							sprintf(filename,"%s%d","outtree",list[i]);
-						
-							/* Ouvertute du fichier qui contiendra tous les arbres de chaque partition */
-							ofstream myfile;
-							myfile.open (filename, ios::out | ios::app);
-							myfile <<monTableau[j-1];
-							myfile << "\n";
-							myfile.close();
-						}
-					}
-					
-					//Inférer le nouvel arbre consensus majoritaire du cluster source (list[i])
-					sprintf(filename,"%s%d","outtree",list[i]);
-					ifstream fichieri(filename, ios::in);  // on ouvre en lecture
-					
-					if(fichieri){		
-						// Ouvertute du fichier contenant les parametres du programme Consense
-						ofstream myfile;
-						myfile.open ("parametresConsense");
-						myfile << filename;
-						myfile << "\n";
-						myfile << "C\n";
-						myfile << "C\n";
-						myfile << "Y\n";
-						myfile.close();
-					 
-						//appel du logiciel consense
-						system("./consense <parametresConsense >outTmp");
-						
-						//Format consensus tree Ci for only one line
-						system("cat outtree|tr \"\n\" \" \">tmp.txt");
-						system("cp tmp.txt outtree");
-
-						//Recuperer le string du consensus des arbres du cluster i par la variable Ci
-						ifstream fileCi;
-						fileCi.open("outtree");
-						
-						getline(fileCi,str_Ci);
-						centroid_k[list[i]]=str_Ci;
-						fileCi.close(); 
-						system("rm outfile outTmp outtree tmp.txt parametresConsense");
-						fichieri.close();
-					}
-					
-					//Calculer la distance intra-groupe pour le cluster source (list[i]) = clusterK_same[list[i]]			
-					for (int j=1;j<n;j++){	
-						if(list[i]==list[j] && i!=j){
-							if(centroid_k[list[i]]!=""){
-								ofstream myTrees;
-								myTrees.open ("myTrees");
-								myTrees << centroid_k[list[i]]<<"\n";
-								myTrees << monTableau[j-1]<<"\n";
-								myTrees.close();
-									
-								RF=NouvelleCallRF(16);
-								tmp_calc_source+=RF;
-							}
-						}
-					} 
-					
-					//mise à jour du nombre d'arbres dans le cluster source (list[i])
-					nb_cluster_source = nb_cluster_source - 1;
-					
-					//Cluster destination (k)
-					
-					//Récupérer tous les arbres du cluster destination (k) avec l'arbre i
-					for (int j=1;j<=n;j++){
-						if(k==list[j] || i==j){
-							sprintf(filename,"%s%d","outtree",k);
-						
-							/* Ouvertute du fichier qui contiendra tous les arbres de chaque partition */
-							ofstream myfile;
-							myfile.open (filename, ios::out | ios::app);
-							myfile <<monTableau[j-1];
-							myfile << "\n";
-							myfile.close();
-						}
-					}
-					
-					//Inférer le nouvel arbre consensus majoritaire du cluster destination (k)
-					sprintf(filename,"%s%d","outtree",k);
-					ifstream fichierk(filename, ios::in);  // on ouvre en lecture
-
-					if(fichierk){	
-						// Ouvertute du fichier contenant les parametres du programme Consense
-						ofstream myfile;
-						myfile.open ("parametresConsense");
-						myfile << filename;
-						myfile << "\n";
-						myfile << "C\n";
-						myfile << "C\n";
-						myfile << "Y\n";
-						myfile.close();
-					 
-						//appel du logiciel consense
-						system("./consense <parametresConsense >outTmp");
-						
-						//Format consensus tree Ci for only one line
-						system("cat outtree|tr \"\n\" \" \">tmp.txt");
-						system("cp tmp.txt outtree");
-
-						//Recuperer le string du consensus des arbres du cluster i par la variable Ci
-						ifstream fileCi;
-						fileCi.open("outtree");
-						
-						getline(fileCi,str_Ci);
-						centroid_k[k]=str_Ci;
-						fileCi.close(); 
-						system("rm outfile outTmp outtree tmp.txt parametresConsense");
-						fichierk.close();
-					}
-
-					system("rm outtree* myTrees");
-					
-					//Calculer la distance intra-groupe pour le cluster destination (k) = clusterK_same[k]
-					for (int j=1;j<n;j++){	
-						if(k==list[j] || i==j){
-							if(centroid_k[k]!=""){
-								ofstream myTrees;
-								myTrees.open ("myTrees");
-								myTrees << centroid_k[k]<<"\n";
-								myTrees << monTableau[j-1]<<"\n";
-								myTrees.close();
-									
-								RF=NouvelleCallRF(16);
-								tmp_calc_dest+=RF;
-							}
-						}
-					} 
-					
-					//mise à jour du nombre d'arbres dans le cluster destination (k)
-					nb_cluster_dest = nb_cluster_dest + 1;
-					
-					FO_new = FO_new + tmp_calc_dest + tmp_calc_source;	
-					
-					if(FO_new<FO_old){
-						Dref=FO_new;		
-						kref=k;
-						
-						//A VOIR SI UTILE
-						new_k = k;
-						old_k = list[i];	
-						
-						//mise à jour de nk_CH[]
-						nk_CH[k] = nb_cluster_dest;
-						nk_CH[list[i]] = nb_cluster_source;					
-						
-						//mise à jour de la distance intra-groupe des deux clusters modifiés 
-						clusterK_same[list[i]] = tmp_calc_source;
-						clusterK_same[k] = tmp_calc_dest;
-						
-						//mise à jour la liste de distribution des elements
-						list[i] = k;	
-												
-						//mise à jour de la fonction objective FO_old
-						FO_old = FO_new;				
-
-					}
-									
-				}
-			}		
-		}
-		SSE=SSE+Dref;         //SSE=SSE+Dref		 
-		howmany[kref]++;	//howmany(kref)=howmany(kref)+1
-		
-	}
-	
-    return FO_new;
-    
-}//  end FO_consense
-
-
-//Fonctions pour la variante K-medoid
+//Fonctions pour la variante k-medoids
 void Centroids_approx(int &n,double** mat,double** xbar,int* list,int &kk, vector<int> &centroid_k_pos)
 {  
 	//vider les vecteurs des infos des centroids approx
