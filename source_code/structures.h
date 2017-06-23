@@ -151,7 +151,7 @@ const char *description = "=====================================================
 			  "|  squared Robinson and Foulds topological distance can be used. The recommended option: Silhouette + non-squared Robinson and Foulds distance.\n"
 		           "===============================================================================================================================================\n";
 
-const char *startMessage = "KMTC - Clustering phylogenetic trees using k-medoids\n"
+const char *startMessage = "KMTC - Clustering phylogenetic trees using k-medoids\n";
 						  
 const char *fichier_output = "output.txt";
 const char *fichier_hgt    = "result.txt";
