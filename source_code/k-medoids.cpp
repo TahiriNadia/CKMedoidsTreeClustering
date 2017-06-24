@@ -718,7 +718,7 @@ m60:
 
 	// Compute execution time
     texec2=difftime(tend2,tbegin2);	// tend-tbegin (result in second)
-	fprintf (Output4,"%.3f;\n",texec2);
+	fprintf (Output4,"%.3f\n",texec2);
 		
 	// Print results
 	
@@ -776,7 +776,6 @@ m60:
 	delete [] nameb;
 	delete [] nk;
 	delete [] distances_RF_norm;
-	delete [] N_especes;
 		
 	return 0;
 }
