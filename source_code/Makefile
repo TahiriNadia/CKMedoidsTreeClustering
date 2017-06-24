@@ -57,7 +57,7 @@ install: KMedoidsTreeClustering.cpp
 	@echo '===> ./KMTC -tree ../input/input.tre 3'
 	
 clean: 
-	$(RM) KMTC
+	$(RM) *.o input_.txt
 	
 help: 
 	@echo 'Please execute the following command lines (on two steps):'
