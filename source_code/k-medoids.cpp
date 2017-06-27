@@ -534,7 +534,7 @@ int main_kmedoids(char **argv,vector <string> monTableau, double ** mat, double 
 					  printf ("SSEref = %lf",SSEref);	
 					  for (i=1;i<=n;i++)
 					  {
-						  printf ("%lf  ",list[i]);	
+						  printf ("%d ",list[i]);	
 					  }
 				  }					
 				  nnit=nit;			
@@ -1070,69 +1070,6 @@ void Assign(int &iran,int &n,int &nmax,int &k1,int &kmax,int* list,int* howmany,
            Permute(iseed,n,nmax,list);	
            return;
    }
-   else if (iassign==3)
-   {
-// Read file of group assignments.
-// First line: how many objects in each group?
-// Then, read members of each group on one line (list of object numbers).
-   
-	   printf ("Name of file of group assignments?");		//60 write(*,*) 'Name of file of group assignments?'
-	   scanf ("%s",namea);		//read(*,*) namea
-
-	   FILE *Input3;
-	   if ((Input3 = fopen(namea,"r"))==0) { printf("\n %s :Open Failed....",namea); exit(1); }   	
-          
-           printf ("File of group assignments: %s\n",namea);
-		  		 
-	  for (k=1;k<=k1;k++)				
-	  {
-		  fscanf(Input3,"%d",&howmany[k]);
-	  }
-
-      isum=0;							
-	  for (k=1;k<=k1;k++)				
-	  {
-		  isum=isum+howmany[k];			
-	  }
-
-      if(isum!=n)					
-	  {
-		  printf("Objects assigned to groups do not sum to n.");
-		  exit(1);
-	  }
-      	  
-	  for (i=1;i<=n;i++) {
-		  list[i]=-1;				
-	  }
-
-	  for (k=1;k<=k1;k++)			
-	  {
-		  for (i=1;i<=howmany[k];i++)				
-		  {
-			  fscanf(Input3, "%d", no[i]);
-		  }
-     	  for (i=1;i<=howmany[k];i++)		
-		  {									
-			  list[no[i]]=k;					
-		  }
-	  }
-
-	  for (i=1;i<=n;i++)	
-	  {	
-		  if(list[i]==-1)	
-		  {
-			  printf("Overlapping assignments to groups.");
-			  exit(1);
-		  }									
-	  }
-      fclose(Input3);			
-      return;
-   }
-   else 
-   {
-          printf("Wrong perameter <iassign> in function <Assign>.");
-          exit(1);
-   }									
 
 } // end
 //************************End of Assign

@@ -116,6 +116,7 @@ void NJ(double **D1,double **DA,int n)
 {
 	double **D,*T1,*S,*LP,Som,Smin,Sij,L,Lii,Ljj,l1,l2,l3;
 	int *T,i,j,ii,jj,n1;
+	double epsilon = 0.00001;
 
 	D=(double **) malloc((n+1)*sizeof(double*));
 	T1=(double *) malloc((n+1)*sizeof(double));
@@ -514,6 +515,7 @@ int Tree_edges (double **DI, long int *ARETE, double *LONGUEUR, int n,int binair
 	int pasfini = 1;
 	int kt=0;
 	int SomToDel,OtherSom;
+	double epsilon = 0.00001;
 
 	X=(int *)malloc((n+1)*sizeof(int));  
 	L=(double *)malloc((n+1)*sizeof(double));
@@ -861,6 +863,7 @@ void approx_arb(double **DISS,double **TM,double **TMnew,double **W, int *Iternu
 	int *degree=0, a=0, exit_number;    
 	double *L, **B, *C, Sum, Sum1, *Path, EQ, l;
 	int na1,ns1,na,ns;
+	double epsilon = 0.00001;
 
 	/*/ Variable declaration*/
 	//printf("\n========== %d",(*kt));;
@@ -1762,6 +1765,7 @@ int lectureNewick(string newick, long int * ARETE, double * LONGUEUR, char ** le
 	string4 = (char*)malloc((100000) * sizeof(char));
 	//char *string4 = (char*) malloc(100000);
 	//char *string4 = new char[10000];
+	double epsilon = 0.00001;
 
 	int temoin=0;
 	int cpt_parenthese=0;
@@ -2078,11 +2082,11 @@ int lectureNewick(string newick, long int * ARETE, double * LONGUEUR, char ** le
 		for(i=1;i<=2*n-3;i++){
 			if((ARETE[2*i-1] != root_existance) && (noeud_interne == ARETE[2*i-2])){
 				LONGUEUR[i-1] = 50;
-				printf("\n[%d,%d]",noeud_interne,ARETE[2*i-1]);
+				printf("\n[%d,%ld]",noeud_interne,ARETE[2*i-1]);
 			}
 			if((ARETE[2*i-2] != root_existance) && (noeud_interne == ARETE[2*i-1])){
 				LONGUEUR[i-1] = 50;
-				printf("\n[%d,%d]",noeud_interne,ARETE[2*i-2]);
+				printf("\n[%d,%ld]",noeud_interne,ARETE[2*i-2]);
 			}
 		}
 		
@@ -2510,7 +2514,7 @@ void ajouterMatriceGene(double **mat,const char *outfile,int taille,char **noms)
 		exit(-1);
 	}
 	else{
-		fprintf(out,"\n",taille);
+		fprintf(out,"%d\n",taille);
 		for(i=1;i<=taille;i++){
 			if(strcmp(noms[i],"") != 0){  //if(strlen(noms[i]) > 1){
 				fprintf(out,"\n%s",noms[i]);

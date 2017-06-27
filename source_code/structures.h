@@ -130,7 +130,7 @@ struct TreeHGT
 #define SPECIE 1
 #define GENE 2
 #define SPECIES_NAME_LENGTH 50
-#define epsilon 0.00001
+//#define epsilon 0.00001
 #define INFINI 999999.99
 #define MAX_HGT 100
 #define FAIL -1

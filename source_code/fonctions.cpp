@@ -31,6 +31,7 @@ void addLeafAndUpdate(struct InputTree *aTree, int choix){
 	
 	int n = aTree->size;
 	int i,j;
+	double epsilon = 0.00001;
 
 	for(i=1;i<=2*n-3-aTree->kt;i++){
 		if(aTree->ARETE[2*i-1] > n) aTree->ARETE[2*i-1] += 1 ;
@@ -66,6 +67,7 @@ void ListeSommets_taille_0(double ** matrix,int * tab_sommet,int size){
 	int cpt=1;
 	int cpt_init;
 	int nouveau_cas=0;
+	double epsilon = 0.00001;
 	
 	//== recherche du premier element admissible
 	while(cpt <= size){
@@ -790,7 +792,7 @@ void ComputeNewDistances(double **DIST,double **ADD,int size,int kt,int newNode,
 	
 	int i,j;
 	double lt = DIST[Sdest][size];
-
+	double epsilon = 0.00001;
 
 	for(i=1;i<=2*size-2-kt;i++){
 		
@@ -829,6 +831,7 @@ void applyHGT(double**ref,struct InputTree * aTree,int i,int j){
 	int Ssup,Sinf,Sdestination;
 	int kt = aTree->kt;
 	int iternumber=100;
+	double epsilon = 0.00001;
 
 	if(i==0 || j==0) { printf("\ntransfert impossible"); exit(-1);}
 	double ** DIST = (double**)malloc(2*aTree->size*(sizeof(double*)));
@@ -1024,7 +1027,7 @@ void applyHGT2(double**ref,struct InputTree * aTree,int i,int j){
 	int Ssup,Sinf,Sdestination;
 	int kt = aTree->kt;
 	int iternumber=100;
-
+	double epsilon = 0.00001;
 	if(i==0 || j==0) { printf("\ntransfert impossible"); exit(-1);}
 	double ** DIST = (double**)malloc(2*aTree->size*(sizeof(double*)));
 	for(p=0;p<2*aTree->size;p++)
@@ -1317,6 +1320,7 @@ void UpdateCriterion(int *first,const char *CRITERION, struct CRITERIA aCrit, st
 int isAValidHGT(struct InputTree SpeciesTree,int i, int j){
 	
 	int d1,d2,d3,d4,root;
+	double epsilon = 0.00001;
 
 	//== if is the root branch
 	if(SpeciesTree.ARETE[2*i-1] == SpeciesTree.Root || SpeciesTree.ARETE[2*i-2] == SpeciesTree.Root || 
@@ -2415,6 +2419,7 @@ void findBranch(struct InputTree aTree,int *branch, int * elt){
 	
 	double max = INFINI; //= disctance between root and intersection
 	int j;
+	double epsilon = 0.00001;
 
 	(*branch) = 0;
 	
@@ -2988,7 +2993,7 @@ void printBestHGT_F(FILE *out,int noHGT,struct InputTree SpeciesTree,struct HGT 
 			fprintf(out,"\n Boottrap value : %lf%%",(double)boot/nbTree*100.0);
 		printTransfer(out,1,SpeciesTree.SpeciesName, SpeciesTree.size,bestHGT.source_A,bestHGT.source_B,bestHGT.dest_A,bestHGT.dest_B);
 		//printf("\n%d--%d -> %d--%d",SpeciesTree.ARETE[2*(bestHGT.source)-1],SpeciesTree.ARETE[2*(bestHGT.source)-2],SpeciesTree.ARETE[2*(bestHGT.destination)-1],SpeciesTree.ARETE[2*(bestHGT.destination)-2]);
-		fprintf(out,"\nRF = %d \nLS = %lf \nBD = %lf",bestHGT.crit.RF,bestHGT.crit.LS,bestHGT.crit.BD,bestHGT.crit.QD);
+		fprintf(out,"\nRF = %d \nLS = %lf \nBD = %lf \nQD = %d",bestHGT.crit.RF,bestHGT.crit.LS,bestHGT.crit.BD,bestHGT.crit.QD);
 /*
 		fprintf(out,"\n%d",bestHGT.listSource[0]);
 		for(j=1;j<=bestHGT.listSource[0];j++)
@@ -3569,6 +3574,7 @@ void printMatrix(char** Name, double **Matrix,int size){
 void printMatrix2(char** Name, double **Matrix,int size){
 
 	int i,j;
+	double epsilon = 0.00001;
 	
 	for(i=1;i<=size;i++){
 		//printf("\n%s",Name[i]);
@@ -3652,8 +3658,8 @@ int readParameters(struct Parameters * param){
 	sprintf((*param).version,"consol");
 	sprintf((*param).multiple,"no");
 	sprintf((*param).multigene,"no");
-	sprintf((*param).path,"");
-	sprintf(input,"");
+	sprintf((*param).path," ");
+	sprintf(input," ");
 	sprintf(output,"output.txt");
 	sprintf(hgtResultFile,"hgtresultfile.txt");
 	sprintf((*param).scenario,"unique");
