@@ -14,9 +14,15 @@ A new fast method for building multiple consensus trees using k-medoids
 	=> =============================================================================================================
 
 # Installation
-	$ make 
-	$ make install
-	$ make clean
+	$ git clone https://github.com/TahiriNadia/CKMedoidsTreeClustering.git
+	    $ make 
+	or
+	    $ make install
+	    
+	    clean projject
+	    $ make clean
+	 
+# Help
 	$ make help
 
 # Examples
