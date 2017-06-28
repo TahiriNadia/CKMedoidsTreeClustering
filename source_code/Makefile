@@ -1,3 +1,7 @@
+install: KMedoidsTreeClustering.cpp
+	g++ KMedoidsTreeClustering.cpp -openmp -g -o KMTC
+	chmod -R 777 * .
+
 all: KMedoidsTreeClustering.cpp
 	g++ KMedoidsTreeClustering.cpp -openmp -g -o KMTC
 	chmod -R 777 * .
@@ -26,10 +30,6 @@ all: KMedoidsTreeClustering.cpp
 	@echo ' '	
 	@echo '===> Command line execution:'
 	@echo '===> ./KMTC -tree ../input/input.tre 3'
-	
-install: KMedoidsTreeClustering.cpp
-	g++ KMedoidsTreeClustering.cpp -openmp -g -o KMTC
-	chmod -R 777 * .
 	
 clean: 
 	$(RM) *.o input_.txt
