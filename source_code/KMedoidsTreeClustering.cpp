@@ -76,7 +76,7 @@ int main(int nargs,char ** argv){
 	char contenu[100];
 		
 	if(nargs < 2){
-		printf("\nbad input..\nusage:%s {-simulation|-matrice|-tree}\n",argv[0]);
+		printf("\nbad input..\nusage:%s {-tree}\n",argv[0]);
 		exit(1);
 	}		
 	
