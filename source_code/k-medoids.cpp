@@ -1,25 +1,3 @@
-// K-means clustering using the SAS Fastclust algorithm,
-// described on p. 352 of Numerical Ecology (1998).
-// 
-// // hoice of transformations for species abundance data,
-// from Legendre and Gallagher (submitted).
-// 
-// Loop with different random starting configurations.
-// 
-// References:
-// 
-// Legendre, P. and E. Gallagher. 2001. Ecologically meaningful transformations 
-// for ordination of species data. Oecologia (in press).
-// 
-//  Legendre, P. and L. Legendre, 1998. Numerical Ecology. 2nd English edition.
-//  Elsevier Science BV, Amsterdam.
-// 
-//  Milligan, G. W. and M. C. Cooper. 1988. A study of standardization of 
-//  variables in cluster analysis. Journal of Classification 5: 181-204.
-// 
-//                                           Pierre Legendre, August 1999
-// 
-//  345678901234567890123456789012345678901234567890123456789012345678901234567890
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
