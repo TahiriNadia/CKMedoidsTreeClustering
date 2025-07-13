@@ -3,7 +3,7 @@ A new fast method for building multiple consensus trees using *k*-medoids
 
 # Documentation
 	See https://bmcevolbiol.biomedcentral.com/articles/10.1186/s12862-018-1163-8
-	Citation Tahiri,N., Willems, M., and Makarenkov, V. (2018). A new fast method for building multiple consensus trees using k-medoids. BMC Evolutionary Biology 18(48)
+	Citation Tahiri, N., Willems, M., and Makarenkov, V. (2018). A new fast method for building multiple consensus trees using k-medoids. BMC Evolutionary Biology 18(48)
 
 # About
 	=> =============================================================================================================
